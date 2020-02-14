@@ -1,9 +1,9 @@
-add_library(bq__XXXXXXXXXXXX
-	XXXXXXXXXXXX.h
-	XXXXXXXXXXXX.cpp	
+add_library(bq__sdl2
+	sdl2.h
+	sdl2.cpp	
 )
 foreach(X 
-	XXXXXXXXXXXX
+	sdl2
 )
 	message(STATUS "ADDING ${X}_test")
 	
