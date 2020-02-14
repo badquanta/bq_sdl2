@@ -41,7 +41,7 @@ namespace bq {
         Texture(Texture &&other);
         Texture& operator=(const Texture &other);
         Texture& operator=(Texture &&other);
-      protected:
+      public:
         SDL_Texture*fSDL_Texture;
         Renderer_sptr fRenderer;
 
