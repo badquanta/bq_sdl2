@@ -10,7 +10,7 @@ include_directories(
 	${SDL2_TTF_INCLUDE_DIRS} 
 	${SDL2_MIXER_INCLUDE_DIRS}
 ) 
-add_library(bq_sdl2 STATIC ./audio.cpp audio/Cvt.cpp audio/Spec.cpp audio/Stream.cpp	
+add_library(bq_sdl2 SHARED ./audio.cpp audio/Cvt.cpp audio/Spec.cpp audio/Stream.cpp	
 EventDispatch.cpp 
 GameController.cpp	
 Haptic.cpp 
