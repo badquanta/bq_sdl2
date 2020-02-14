@@ -51,8 +51,6 @@ public:
   Renderer(Renderer &&other);
   Renderer &operator=(const Renderer &other);
   Renderer &operator=(Renderer &&other);
-
-protected:
   SDL_Renderer *fRenderer;
 };
 
