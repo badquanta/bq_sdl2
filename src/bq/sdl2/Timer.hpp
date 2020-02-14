@@ -12,7 +12,7 @@ namespace bq {
   namespace sdl2 {
     typedef Uint32 ticks;
     ticks getTicks();
-
+    void delay(Uint32);
     class Timer {
       public:
         Timer();

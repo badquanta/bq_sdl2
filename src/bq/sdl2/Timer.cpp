@@ -12,6 +12,9 @@ namespace bq {
     Uint32 getTicks(){
       return SDL_GetTicks();
     }
+    void delay(Uint32 t){
+      SDL_Delay(t);
+    }
     Timer::Timer() {
       stop();
     }
