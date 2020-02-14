@@ -8,7 +8,7 @@
 #ifndef SDL2_TTF_HPP_
 #define SDL2_TTF_HPP_
 #include <SDL2/SDL_ttf.h>
-
+#include <string_view>
 #include "../shared_ptrs.hpp"
 namespace bq {
   namespace sdl2 {
@@ -24,7 +24,7 @@ namespace bq {
             int idx = 0);
         TTF(TTF_Font*,int,int);
         virtual ~TTF();
-        virtual void close();
+        void close();
         static  void byteSwappedUNICODE(int);
         virtual int getStyle();
         virtual void setStyle(int);

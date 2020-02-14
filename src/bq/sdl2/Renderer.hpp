@@ -16,7 +16,7 @@ namespace sdl2 {
 
 class Renderer {
 public:
-  static WeakPtrCache<SDL_Renderer*,Renderer> get_sptr;
+  static WeakPtrCache<SDL_Renderer*, Renderer, SDL_Renderer*> get_sptr;
   Texture_sptr createTextureFromSurface(SDL_Surface *) const;
   Texture_sptr createTextureFromSurface(const Surface_sptr &) const;
   Texture_sptr loadTextureFromBMP(const std::string_view &) const;

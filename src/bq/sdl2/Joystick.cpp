@@ -12,12 +12,12 @@
 #include "Haptic.hpp"
 namespace bq {
   namespace sdl2 {
-    WeakPtrCache<SDL_Joystick*,Joystick> Joystick::get_sptr(stdMakeShared<SDL_Joystick*,Joystick>);
+    WeakPtrCache<SDL_Joystick*, Joystick, SDL_Joystick*> Joystick::get_sptr(stdMakeShared<Joystick, SDL_Joystick*>);
     Haptic_sptr Joystick::openHaptic(){
       if(pJoystick&&haptic::init()){
         SDL_Haptic* sdl_haptic = SDL_HapticOpenFromJoystick(pJoystick);
         if(sdl_haptic){
-          return Haptic::get_sptr(sdl_haptic);
+          return Haptic::get_sptr(sdl_haptic, sdl_haptic);
         }
       }
       return nullptr;
@@ -46,7 +46,7 @@ namespace bq {
         if (!sdl_joystick) {
           Log::Input.errorSDL(__PRETTY_FUNCTION__);
         } else {
-          cache[i] = sp = get_sptr(sdl_joystick);
+          cache[i] = sp = get_sptr(sdl_joystick, sdl_joystick);
         }
       }
       return sp;
@@ -61,7 +61,7 @@ namespace bq {
         if (!sdl_joystick) {
           Log::Input.errorSDL(__PRETTY_FUNCTION__);
         } else {
-          cache[id] = sp = get_sptr(sdl_joystick);
+          cache[id] = sp = get_sptr(sdl_joystick, sdl_joystick);
         }
       }
       return sp;

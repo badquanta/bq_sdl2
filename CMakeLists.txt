@@ -32,7 +32,7 @@ set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
 ExternalProject_Add(
     bq_utils
     PREFIX ${CMAKE_BINARY_DIR}/lib/bq_utils
-    GIT_REPOSITORY https://github.com/badquanta/bq_utils.git
+    GIT_REPOSITORY /home/badquanta/bq_utils++ #https://github.com/badquanta/bq_utils.git
     TIMEOUT 10
     #UPDATE_COMMAND ${GIT_EXECUTABLE} pull
     #CONFIGURE_COMMAND ""

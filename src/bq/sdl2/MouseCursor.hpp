@@ -17,7 +17,7 @@ namespace bq {
       public:
         bool autoFree = true;
         SDL_Cursor* sdl_cursor;
-        static WeakPtrCache<SDL_Cursor*,MouseCursor> get_sptr;
+        static WeakPtrCache<SDL_Cursor*, MouseCursor, SDL_Cursor*> get_sptr;
         MouseCursor(SDL_Cursor*);
         virtual ~MouseCursor();
         bool free();

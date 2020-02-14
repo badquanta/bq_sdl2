@@ -21,7 +21,7 @@ namespace bq {
         if(init()){
           SDL_Haptic* sdl_haptic = SDL_HapticOpen(idx);
           if(sdl_haptic){
-            return Haptic::get_sptr(sdl_haptic);
+            return Haptic::get_sptr(sdl_haptic,sdl_haptic);
           } else {
             Log::Input.errorSDL(__PRETTY_FUNCTION__);
           }
@@ -32,7 +32,7 @@ namespace bq {
     }
 
 
-    WeakPtrCache<SDL_Haptic*,Haptic> Haptic::get_sptr(stdMakeShared<SDL_Haptic*,Haptic>);
+    WeakPtrCache<SDL_Haptic*,Haptic,SDL_Haptic*> Haptic::get_sptr(stdMakeShared<Haptic,SDL_Haptic*>);
     Haptic::Haptic(SDL_Haptic* h):sdl_haptic{h} {
       // TODO Auto-generated constructor stub
 

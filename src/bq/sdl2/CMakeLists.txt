@@ -36,7 +36,7 @@ foreach(X
 )
 	message(STATUS "making ${X}_test")
 	add_executable("${X}_test" "${X}_test.cpp")
-	target_link_libraries("${X}_test" bqpd)
+	target_link_libraries("${X}_test" bq_sdl2)
 	add_dependencies("${X}_test" doctest)
 	target_include_directories("${X}_test" PUBLIC "${DOCTEST_INCLUDE_DIR}")
 	add_test("${X}_test" "${X}_test")

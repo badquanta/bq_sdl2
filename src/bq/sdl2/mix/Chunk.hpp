@@ -8,16 +8,17 @@
 #ifndef SDL2_MIX_CHUNK_HPP_
 #define SDL2_MIX_CHUNK_HPP_
 #include "shared_ptrs.hpp"
-#include "../../util/WeakPtrCache.hpp"
+#include <bq/WeakPtrCache.hpp>
 #include <SDL2/SDL_mixer.h>
+#include <string_view>
 namespace bq {
   namespace sdl2 {
     namespace mix {
 
       class Chunk {
         public:
-          static WeakPtrCache<Mix_Chunk*,Chunk> get_sptr;
-          static WeakPtrCache<std::string_view,Chunk> load;
+          static WeakPtrCache<Mix_Chunk*,Chunk,Mix_Chunk*> get_sptr;
+          static WeakPtrCache<std::string_view,Chunk,std::string_view> load;
           Mix_Chunk* mix_chunk;
           bool mayFree=true;
           Chunk(Mix_Chunk*);

@@ -15,7 +15,7 @@
 #include "Renderer.hpp"
 namespace bq {
   namespace sdl2 {
-    WeakPtrCache<SDL_Texture*,Texture> Texture::get_sptr(stdMakeShared<SDL_Texture*,Texture>);
+    WeakPtrCache<SDL_Texture*, Texture, SDL_Texture*> Texture::get_sptr(stdMakeShared<Texture, SDL_Texture*>);
     bool Texture::setBlendMode(SDL_BlendMode m) const {
       if (SDL_SetTextureBlendMode(fSDL_Texture, m) == 0) {
         Log::Render.info(__PRETTY_FUNCTION__);

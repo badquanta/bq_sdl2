@@ -10,7 +10,7 @@
 #include <doctest/doctest.h>
 #include "Window.hpp"
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "../extern/onqtam/doctest.h"
+#include "doctest/doctest.h"
 namespace bq {
     TEST_CASE("window surface test 1"){
         sdl2::Window_sptr win = sdl2::Window::create(320,200,"Surface Test 1");

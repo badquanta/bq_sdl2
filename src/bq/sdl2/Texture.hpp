@@ -10,16 +10,16 @@
 #include <SDL2/SDL.h>
 
 #include "shared_ptrs.hpp"
-#include "../pd/Sprite.hpp"
+//#include "../pd/Sprite.hpp"
 #include <bq/WeakPtrCache.hpp>
+#include "Renderer.hpp"
 namespace bq {
   namespace sdl2 {
     class Texture {
       friend Renderer;
-      friend pd::Sprite;
       public:
         /**Ensure there is but one shared_ptr per SDL_Texture&**/
-        static WeakPtrCache<SDL_Texture*,Texture> get_sptr;
+        static WeakPtrCache<SDL_Texture*, Texture, SDL_Texture*> get_sptr;
         /**Encode the "bounds" of this texture, x==w & y==h**/
         SDL_Rect bounds;
 

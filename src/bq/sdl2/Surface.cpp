@@ -15,7 +15,7 @@
 
 namespace bq {
   namespace sdl2 {
-    WeakPtrCache<SDL_Surface*,Surface> Surface::get_sptr(stdMakeShared<SDL_Surface*,Surface>);
+    WeakPtrCache<SDL_Surface*, Surface, SDL_Surface*> Surface::get_sptr(stdMakeShared<Surface, SDL_Surface*>);
     /**
      * SDL_SetColorKey...
      * @link https://wiki.libsdl.org/SDL_SetColorKey?highlight=%28%5CbCategoryAPI%5Cb%29%7C%28SDLFunctionTemplate%29
@@ -50,7 +50,7 @@ namespace bq {
       SDL_Surface *sdl_surface = SDL_LoadBMP(path.data());
       Surface_sptr surface = NULL;
       if (sdl_surface) {
-        surface = get_sptr(sdl_surface);
+        surface = get_sptr(sdl_surface, sdl_surface);
 
       } else {
         Log::Video.errorSDL(__PRETTY_FUNCTION__);

@@ -9,14 +9,15 @@
 #define SDL2_MIX_MUSIC_HPP_
 #include <SDL2/SDL_mixer.h>
 #include "shared_ptrs.hpp"
-#include "../../util/WeakPtrCache.hpp"
+#include <bq/WeakPtrCache.hpp>
+#include <string_view>
 namespace bq {
   namespace sdl2 {
     namespace mix {
       class Music {
         public:
-          static WeakPtrCache<Mix_Music*,Music> get_sptr;
-          static WeakPtrCache<std::string_view,Music> load;
+          static WeakPtrCache<Mix_Music*,Music,Mix_Music*> get_sptr;
+          static WeakPtrCache<std::string_view,Music,std::string_view> load;
           Mix_Music* mix_music;
           bool mayFree=true;
           static bool playing();

@@ -16,7 +16,7 @@ namespace bq {
         friend Window;
         friend Renderer;
       public:
-        static WeakPtrCache<SDL_Surface*,Surface> get_sptr;
+        static WeakPtrCache<SDL_Surface*, Surface, SDL_Surface*> get_sptr;
         static Surface_sptr loadBMP(std::string_view path);
         Surface(SDL_Surface *aSurface);
         virtual ~Surface();
