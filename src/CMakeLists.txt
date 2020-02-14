@@ -1,17 +1,2 @@
-add_library(bq__sdl2
-	sdl2.h
-	sdl2.cpp	
-)
-foreach(X 
-	sdl2
-)
-	message(STATUS "ADDING ${X}_test")
-	
-	add_executable("${X}_test" "${X}_test.cpp" )
-	add_dependencies("${X}_test" doctest)
-	target_include_directories("${X}_test" PUBLIC "${DOCTEST_INCLUDE_DIR}")
+add_subdirectory(bq)
 
-	#target_link_libraries("${X}_test" PUBLIC bqpd)	
-	#target_link_libraries("${X}_test" PRIVATE doctest::doctest)
-	add_test("${X}_test" "${X}_test")
-endforeach()
