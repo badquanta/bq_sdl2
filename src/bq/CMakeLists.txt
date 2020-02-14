@@ -1,4 +1,4 @@
-add_library(bq__sdl2
+add_library(bq__sdl2 STATIC
 	sdl2.h
 	sdl2.cpp	
 )
