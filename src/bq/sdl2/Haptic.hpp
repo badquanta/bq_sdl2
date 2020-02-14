@@ -8,7 +8,7 @@
 #ifndef SDL2_HAPTIC_HPP_
 #define SDL2_HAPTIC_HPP_
 #include <SDL2/SDL.h>
-#include "../util/WeakPtrCache.hpp"
+#include <bq/WeakPtrCache.hpp>
 #include "Subsystem.hpp"
 #include "shared_ptrs.hpp"
 #include <mutex>

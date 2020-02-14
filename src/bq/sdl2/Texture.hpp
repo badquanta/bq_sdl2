@@ -11,7 +11,7 @@
 
 #include "shared_ptrs.hpp"
 #include "../pd/Sprite.hpp"
-#include "../util/WeakPtrCache.hpp"
+#include <bq/WeakPtrCache.hpp>
 namespace bq {
   namespace sdl2 {
     class Texture {

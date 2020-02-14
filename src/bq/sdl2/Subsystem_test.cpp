@@ -6,7 +6,8 @@
  */
 
 #include "Subsystem.hpp"
-#include "../util/bqdoctest.hpp"
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include <doctest/doctest.h>
 namespace bq {
   namespace sdl2 {
     TEST_CASE("init & wasInit"){
