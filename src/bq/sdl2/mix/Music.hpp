@@ -16,8 +16,8 @@ namespace bq {
     namespace mix {
       class Music {
         public:
-          static WeakPtrCache<Mix_Music*,Music,Mix_Music*> get_sptr;
-          static WeakPtrCache<std::string_view,Music,std::string_view> load;
+          static WeakPtrCache<Mix_Music*,Music> get_sptr;
+          static WeakPtrCache<std::string_view,Music> load;
           Mix_Music* mix_music;
           bool mayFree=true;
           static bool playing();

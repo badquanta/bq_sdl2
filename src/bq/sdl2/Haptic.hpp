@@ -25,7 +25,7 @@ namespace bq {
 
     class Haptic {
       public:
-        static WeakPtrCache<SDL_Haptic*, Haptic, SDL_Haptic*> get_sptr;
+        static WeakPtrCache<SDL_Haptic*, Haptic> get_sptr;
         SDL_Haptic*sdl_haptic;
         Haptic(SDL_Haptic*);
         virtual ~Haptic();

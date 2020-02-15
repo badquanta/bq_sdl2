@@ -17,7 +17,7 @@
 #include "Texture.hpp"
 namespace bq {
 namespace sdl2 {
-  WeakPtrCache<SDL_Renderer*, Renderer, SDL_Renderer*> Renderer::get_sptr(stdMakeShared<Renderer, SDL_Renderer*>);
+  WeakPtrCache<SDL_Renderer*, Renderer> Renderer::get_sptr(stdOnCacheMissKey<SDL_Renderer*, Renderer>);
 bool Renderer::setViewport(const SDL_Rect *rect) const {
   if (SDL_RenderSetViewport(fRenderer, rect) == 0) {
     Log::Render.info(__PRETTY_FUNCTION__);
@@ -143,9 +143,9 @@ Texture_sptr Renderer::createTextureFromSurface(SDL_Surface *surf) const {
   Texture_sptr texture{nullptr};
   if (sdl_texture) {
     Log::Render.info(__PRETTY_FUNCTION__);
-    texture = Texture::get_sptr(sdl_texture, sdl_texture);
+    texture = Texture::get_sptr(sdl_texture);
     texture->bounds={0,0, surf->w, surf->h};
-    texture->fRenderer=Renderer::get_sptr(this->fRenderer,this->fRenderer);
+    texture->fRenderer=Renderer::get_sptr(this->fRenderer);
   } else {
     Log::Render.errorSDL(__PRETTY_FUNCTION__);
   }
@@ -192,23 +192,6 @@ Renderer::~Renderer() {
   // TODO Auto-generated destructor stub
 }
 
-Renderer::Renderer(const Renderer &other) {// @suppress("Class members should be properly initialized")
-  // TODO Auto-generated constructor stub
-}
-
-Renderer::Renderer(Renderer &&other) {// @suppress("Class members should be properly initialized")
-  // TODO Auto-generated constructor stub
-}
-
-Renderer &Renderer::operator=(const Renderer &other) {
-  // TODO Auto-generated method stub
-  return *this;
-}
-
-Renderer &Renderer::operator=(Renderer &&other) {
-  // TODO Auto-generated method stub
-  return *this;
-}
 
 } /* namespace sdl2 */
 } /* namespace bq */

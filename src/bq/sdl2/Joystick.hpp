@@ -20,7 +20,7 @@ namespace bq {
       public:
         static bool init();
         static bool wasInit();
-        static WeakPtrCache<SDL_Joystick*, Joystick, SDL_Joystick*> get_sptr;
+        static WeakPtrCache<SDL_Joystick*, Joystick> get_sptr;
         Joystick(SDL_Joystick*);
         virtual ~Joystick();
 

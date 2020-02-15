@@ -18,8 +18,8 @@ namespace bq {
   namespace sdl2 {
     Log &log = Log::Video;
     /** Used to ensure there is but one copy of each shared pointer. */
-    WeakPtrCache<SDL_Window*, Window, SDL_Window*> Window::get_sptr(
-        stdMakeShared<Window, SDL_Window*>);
+    WeakPtrCache<SDL_Window*, Window> Window::get_sptr(
+        stdOnCacheMissKey<SDL_Window*,Window>);
     /**
      * """Use this function to create a 2D rendering context for a window.""" - SDL Wiki
      *
@@ -34,7 +34,7 @@ namespace bq {
       SDL_Renderer *sdl_renderer = SDL_CreateRenderer(sdl_window,
           idx, flags);
       if (sdl_renderer) {
-        fRenderer = Renderer::get_sptr(sdl_renderer, sdl_renderer);
+        fRenderer = Renderer::get_sptr(sdl_renderer);
       } else {
         log.errorSDL(__PRETTY_FUNCTION__);
         fRenderer = nullptr;
@@ -49,7 +49,7 @@ namespace bq {
       if (!fRenderer) {
         SDL_Renderer *sdl_renderer = SDL_GetRenderer(sdl_window);
         if (sdl_renderer) {
-          fRenderer = Renderer::get_sptr(sdl_renderer, sdl_renderer);
+          fRenderer = Renderer::get_sptr(sdl_renderer);
         } else {
           createRenderer();
         }
@@ -69,7 +69,7 @@ namespace bq {
       if (sdl2::init(SDL_INIT_VIDEO)) {
         sdl_window = SDL_CreateWindow(t.data(), x, y, w, h, f);
         if (sdl_window) {
-          window = Window::get_sptr(sdl_window, sdl_window);
+          window = Window::get_sptr(sdl_window);
         } else {
           log.errorSDL(__PRETTY_FUNCTION__);
         }
@@ -106,7 +106,7 @@ namespace bq {
       SDL_Surface *sdl_surface = NULL;
       Surface_sptr surface = NULL;
       if ((sdl_surface = SDL_GetWindowSurface(sdl_window))) {
-        surface = Surface::get_sptr(sdl_surface, sdl_surface);
+        surface = Surface::get_sptr(sdl_surface);
       } else {
         log.errorSDL(__PRETTY_FUNCTION__);
       }
@@ -159,7 +159,7 @@ namespace bq {
       SDL_Window *sdl_window = SDL_GetWindowFromID(id);
       log.info("%s id = %d", __PRETTY_FUNCTION__, id);
       if (sdl_window) {
-        return Window::get_sptr(sdl_window, sdl_window);
+        return Window::get_sptr(sdl_window);
       } else {
         log.errorSDL(__PRETTY_FUNCTION__);
         return nullptr;
@@ -247,7 +247,7 @@ namespace bq {
     Window_sptr Window::getGrabbed() {
       SDL_Window *sdl_window = SDL_GetGrabbedWindow();
       if (sdl_window) {
-        return Window::get_sptr(sdl_window, sdl_window);
+        return Window::get_sptr(sdl_window);
       } else {
         return nullptr;
       }
@@ -322,7 +322,7 @@ namespace bq {
       if (sdl_window) {
         return SDL_GetWindowTitle(sdl_window);
       } else {
-        return nullptr;
+        return "null sdl_window";
       }
     }
     /**
@@ -417,6 +417,7 @@ namespace bq {
       } else {
         log.error("%s null sdl_window", __PRETTY_FUNCTION__);
       }
+      return opacity;
     }
     /**
      * SDL_HideWindow

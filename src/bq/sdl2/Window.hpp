@@ -46,7 +46,7 @@ namespace bq {
         Window(SDL_Window *aWindow);
         virtual ~Window();
         // Static global caches of Window instances to weak/shared pointers.
-        static WeakPtrCache<SDL_Window*, Window, SDL_Window*> get_sptr;
+        static WeakPtrCache<SDL_Window*, Window> get_sptr;
         // ------------------------------------------------------------
       public: // Instance creators
         static int getCount();

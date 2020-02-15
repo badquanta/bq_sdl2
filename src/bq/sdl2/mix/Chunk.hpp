@@ -17,7 +17,7 @@ namespace bq {
 
       class Chunk {
         public:
-          static WeakPtrCache<Mix_Chunk*,Chunk,Mix_Chunk*> get_sptr;
+          static WeakPtrCache<Mix_Chunk*, Chunk> get_sptr;
           static WeakPtrCache<std::string_view,Chunk,std::string_view> load;
           Mix_Chunk* mix_chunk;
           bool mayFree=true;

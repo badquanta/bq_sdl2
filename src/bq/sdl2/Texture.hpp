@@ -19,7 +19,7 @@ namespace bq {
       friend Renderer;
       public:
         /**Ensure there is but one shared_ptr per SDL_Texture&**/
-        static WeakPtrCache<SDL_Texture*, Texture, SDL_Texture*> get_sptr;
+        static WeakPtrCache<SDL_Texture*, Texture> get_sptr;
         /**Encode the "bounds" of this texture, x==w & y==h**/
         SDL_Rect bounds;
 

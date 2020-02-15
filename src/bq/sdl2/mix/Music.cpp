@@ -12,12 +12,12 @@ namespace bq {
   namespace sdl2 {
     namespace mix {
       static Log& log=Log::Audio;
-      WeakPtrCache<Mix_Music*,Music,Mix_Music*> Music::get_sptr(stdMakeShared<Music,Mix_Music*>);
-      WeakPtrCache<std::string_view,Music,std::string_view> Music::load([](std::string_view f)-> mix::Music_sptr {
+      WeakPtrCache<Mix_Music*,Music> Music::get_sptr(stdOnCacheMissKey<Mix_Music*,Music>);
+      WeakPtrCache<std::string_view,Music> Music::load([](std::string_view f)-> mix::Music_sptr {
         if(init()){
           Mix_Music* mix_music = Mix_LoadMUS(f.data());
           if(mix_music){
-            return get_sptr(mix_music,mix_music);
+            return get_sptr(mix_music);
           } else {
             log.errorMIX(__PRETTY_FUNCTION__);
           }

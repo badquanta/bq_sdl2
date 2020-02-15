@@ -128,7 +128,7 @@ namespace bq {
       if (!fTTF_Font) return nullptr;
       SDL_Surface *s = TTF_RenderText_Solid(fTTF_Font, str.data(),
           fg);
-      if (s) return Surface::get_sptr(s,s);
+      if (s) return Surface::get_sptr(s);
       else Log::Render.errorTTF(__PRETTY_FUNCTION__);
       return nullptr;
     }
@@ -140,7 +140,7 @@ namespace bq {
       if (!fTTF_Font) return nullptr;
       SDL_Surface *s = TTF_RenderUTF8_Solid(fTTF_Font, str.data(),
           fg);
-      if (s) return Surface::get_sptr(s,s);
+      if (s) return Surface::get_sptr(s);
       else Log::Render.errorTTF(__PRETTY_FUNCTION__);
       return nullptr;
     }
@@ -151,7 +151,7 @@ namespace bq {
         SDL_Color fg) {
       if (!fTTF_Font) return nullptr;
       SDL_Surface *s = TTF_RenderGlyph_Solid(fTTF_Font, ch, fg);
-      if (s) return Surface::get_sptr(s,s);
+      if (s) return Surface::get_sptr(s);
       else Log::Render.errorTTF(__PRETTY_FUNCTION__);
       return nullptr;
     }
@@ -163,7 +163,7 @@ namespace bq {
       if (!fTTF_Font) return nullptr;
       SDL_Surface *s = TTF_RenderText_Shaded(fTTF_Font,
           str.data(), fg, bg);
-      if (s) return Surface::get_sptr(s,s);
+      if (s) return Surface::get_sptr(s);
       else Log::Render.errorTTF(__PRETTY_FUNCTION__);
       return nullptr;
     }
@@ -175,7 +175,7 @@ namespace bq {
       if (!fTTF_Font) return nullptr;
       SDL_Surface *s = TTF_RenderUTF8_Shaded(fTTF_Font,
           str.data(), fg, bg);
-      if (s) return Surface::get_sptr(s,s);
+      if (s) return Surface::get_sptr(s);
       else Log::Render.errorTTF(__PRETTY_FUNCTION__);
       return nullptr;
     }
@@ -187,7 +187,7 @@ namespace bq {
       if (!fTTF_Font) return nullptr;
       SDL_Surface *s = TTF_RenderGlyph_Shaded(fTTF_Font, ch, fg,
           bg);
-      if (s) return Surface::get_sptr(s,s);
+      if (s) return Surface::get_sptr(s);
       else Log::Render.errorTTF(__PRETTY_FUNCTION__);
       return nullptr;
     }
@@ -199,7 +199,7 @@ namespace bq {
       if (!fTTF_Font) return nullptr;
       SDL_Surface *s = TTF_RenderText_Blended(fTTF_Font,
           str.data(), fg);
-      if (s) return Surface::get_sptr(s,s);
+      if (s) return Surface::get_sptr(s);
       else Log::Render.errorTTF(__PRETTY_FUNCTION__);
       return nullptr;
     }
@@ -211,7 +211,7 @@ namespace bq {
       if (!fTTF_Font) return nullptr;
       SDL_Surface *s = TTF_RenderUTF8_Blended(fTTF_Font,
           str.data(), fg);
-      if (s) return Surface::get_sptr(s,s);
+      if (s) return Surface::get_sptr(s);
       else Log::Render.errorTTF(__PRETTY_FUNCTION__);
       return nullptr;
     }
@@ -225,7 +225,7 @@ namespace bq {
       SDL_Surface *sdl_surface = TTF_RenderGlyph_Blended(
           fTTF_Font, ch, fg);
       if (sdl_surface) {
-        return Surface::get_sptr(sdl_surface, sdl_surface);
+        return Surface::get_sptr(sdl_surface);
       } else {
         Log::Render.errorTTF(__PRETTY_FUNCTION__);
         return nullptr;

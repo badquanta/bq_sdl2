@@ -13,13 +13,13 @@ namespace bq {
   namespace sdl2 {
     namespace mix {
       static Log& log=Log::Audio;
-      WeakPtrCache<Mix_Chunk*,Chunk,Mix_Chunk*> Chunk::get_sptr(stdMakeShared<Chunk,Mix_Chunk*>);
+      WeakPtrCache<Mix_Chunk*, Chunk> Chunk::get_sptr(stdOnCacheMissKey<Mix_Chunk*,Chunk>);
       WeakPtrCache<std::string_view,Chunk,std::string_view> Chunk::load(
           [](std::string_view f)->Chunk_sptr{
         if(audio::init() && init()){
           Mix_Chunk* mix_chunk = Mix_LoadWAV(f.data());
           if(mix_chunk){
-            return get_sptr(mix_chunk,mix_chunk);
+            return get_sptr(mix_chunk);
           } else {
             log.errorMIX(__PRETTY_FUNCTION__);
           }
@@ -61,8 +61,10 @@ namespace bq {
           } else {
             log.errorMIX(__PRETTY_FUNCTION__);
           }
+          return channel;
         } else {
           log.debug("%s: mix_chunk is null",__PRETTY_FUNCTION__);
+          return -1;
         }
       }
       /**

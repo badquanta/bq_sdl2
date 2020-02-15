@@ -16,7 +16,7 @@
 #include "Window.hpp"
 namespace bq {
   namespace sdl2 {
-    WeakPtrCache<SDL_Cursor*, MouseCursor, SDL_Cursor*> MouseCursor::get_sptr(stdMakeShared<MouseCursor, SDL_Cursor*>);
+    WeakPtrCache<SDL_Cursor*, MouseCursor> MouseCursor::get_sptr(stdOnCacheMissKey<SDL_Cursor*, MouseCursor>);
 
     MouseCursor::MouseCursor(SDL_Cursor *c)
         : sdl_cursor { c } {
@@ -32,7 +32,7 @@ namespace bq {
         SDL_Cursor *sdl_cursor = SDL_CreateColorCursor(surf, x,
             y);
         if (sdl_cursor) {
-          return MouseCursor::get_sptr(sdl_cursor, sdl_cursor);
+          return MouseCursor::get_sptr(sdl_cursor);
         } else {
           Log::Video.errorSDL(__PRETTY_FUNCTION__);
         }
@@ -52,7 +52,7 @@ namespace bq {
       SDL_Cursor *sdl_cursor = SDL_CreateCursor(data, mask, w, h,
           hX, hY);
       if (sdl_cursor) {
-        return MouseCursor::get_sptr(sdl_cursor, sdl_cursor);
+        return MouseCursor::get_sptr(sdl_cursor);
       } else {
         Log::Video.errorSDL(__PRETTY_FUNCTION__);
       }
@@ -63,8 +63,9 @@ namespace bq {
         SDL_SystemCursor id) {
       SDL_Cursor *sdl_cursor = SDL_CreateSystemCursor(id);
       if (sdl_cursor) {
-        return MouseCursor::get_sptr(sdl_cursor, sdl_cursor);
+        return MouseCursor::get_sptr(sdl_cursor);
       }
+      return nullptr;
     }
 
     bool MouseCursor::free() {
@@ -94,7 +95,7 @@ namespace bq {
       if (SDL_SetRelativeMouseMode(s) != 0) {
         Log::Input.errorSDL(__PRETTY_FUNCTION__);
         return false;
-      }
+      } else return true;
     }
     void MouseCursor::setCursor(SDL_Cursor*sdl_cursor){
       SDL_SetCursor(sdl_cursor);
@@ -135,8 +136,8 @@ namespace bq {
     Window_sptr MouseCursor::focused() {
       SDL_Window *sdl_window = SDL_GetMouseFocus();
       if (sdl_window) {
-        return Window::get_sptr(sdl_window, sdl_window);
-      }
+        return Window::get_sptr(sdl_window);
+      } else return nullptr;
     }
 
     bool MouseCursor::capture(SDL_bool enabled) {

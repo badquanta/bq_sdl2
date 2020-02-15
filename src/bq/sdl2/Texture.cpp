@@ -15,7 +15,7 @@
 #include "Renderer.hpp"
 namespace bq {
   namespace sdl2 {
-    WeakPtrCache<SDL_Texture*, Texture, SDL_Texture*> Texture::get_sptr(stdMakeShared<Texture, SDL_Texture*>);
+    WeakPtrCache<SDL_Texture*, Texture> Texture::get_sptr(stdOnCacheMissKey<SDL_Texture*,Texture>);
     bool Texture::setBlendMode(SDL_BlendMode m) const {
       if (SDL_SetTextureBlendMode(fSDL_Texture, m) == 0) {
         Log::Render.info(__PRETTY_FUNCTION__);
@@ -94,6 +94,7 @@ namespace bq {
     }
 
     Texture& Texture::operator=(const Texture &other) {
+      if(&other==this)return *this;
       // TODO Auto-generated method stub
       this->bounds = other.bounds;
       this->fSDL_Texture = other.fSDL_Texture;
@@ -102,6 +103,7 @@ namespace bq {
     }
 
     Texture& Texture::operator=(Texture &&other) { // @suppress("No return")
+      if(&other==this)return *this;
       // TODO Auto-generated method stub
       this->bounds = other.bounds;
       this->fSDL_Texture = other.fSDL_Texture;
