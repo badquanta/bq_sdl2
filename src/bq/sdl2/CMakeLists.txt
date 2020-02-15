@@ -16,6 +16,7 @@ GameController.cpp
 Haptic.cpp 
 image.cpp 
 Joystick.cpp 
+keyboard.hpp keyboard.cpp
 Log.cpp
 mix.cpp mix/Chunk.cpp mix/Music.cpp MouseCursor.cpp Renderer.cpp Subsystem.cpp Surface.cpp Texture.cpp Timer.cpp ttf/TTF.cpp Video.cpp Window.cpp)
 add_dependencies(bq_sdl2 bq_utils)
