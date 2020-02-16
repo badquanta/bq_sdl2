@@ -11,7 +11,7 @@
 
 #include "shared_ptrs.hpp"
 //#include "../pd/Sprite.hpp"
-#include <bq/WeakPtrCache.hpp>
+#include <bq/utils/WeakPtrCache.hpp>
 #include "Renderer.hpp"
 namespace bq {
   namespace sdl2 {

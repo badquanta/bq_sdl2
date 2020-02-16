@@ -6,7 +6,7 @@
  */
 #include "Window.hpp"
 
-#include "../sdl2/Subsystem.hpp"
+#include "Subsystem.hpp"
 #include <memory>
 #include <map>
 #include <mutex>

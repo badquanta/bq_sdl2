@@ -8,7 +8,7 @@
 #ifndef SDL2_MIX_CHUNK_HPP_
 #define SDL2_MIX_CHUNK_HPP_
 #include "shared_ptrs.hpp"
-#include <bq/WeakPtrCache.hpp>
+#include <bq/utils/WeakPtrCache.hpp>
 #include <SDL2/SDL_mixer.h>
 #include <string_view>
 namespace bq {

@@ -6,7 +6,7 @@
  */
 
 #include "Log.hpp"
-#include "../src/_Log.hpp"
+
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest/doctest.h>
 namespace bq {

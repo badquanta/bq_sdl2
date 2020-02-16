@@ -9,7 +9,7 @@ ExternalProject_Add(
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
-    LOG_DOWNLOAD ON
+    #LOG_DOWNLOAD ON
 )
 ExternalProject_Get_Property(doctest source_dir)
 set(DOCTEST_INCLUDE_DIR ${source_dir} CACHE INTERNAL "Path to include folder for doctest")
@@ -25,8 +25,9 @@ ExternalProject_Add(
     #CONFIGURE_COMMAND ""
     #BUILD_COMMAND ""
     #INSTALL_COMMAND ""
-    LOG_DOWNLOAD ON
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
+    #LOG_DOWNLOAD ON
+    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}
 )
 ExternalProject_Get_Property(bq_utils source_dir)
-set(BQ_UTILS_INCLUDE_DIRS ${source_dir}/src CACHE INTERNAL "Path to include folder for bq_utils")
+set(BQ_UTILS_INCLUDE_DIRS ${CMAKE_BINARY_DIR}/include CACHE INTERNAL "Path to include folder for bq_utils")
+#include_directories(${CMAKE_BINARY_DIR}/include)

@@ -9,7 +9,7 @@
 #define SDL2_MIX_MUSIC_HPP_
 #include <SDL2/SDL_mixer.h>
 #include "shared_ptrs.hpp"
-#include <bq/WeakPtrCache.hpp>
+#include <bq/utils/WeakPtrCache.hpp>
 #include <string_view>
 namespace bq {
   namespace sdl2 {

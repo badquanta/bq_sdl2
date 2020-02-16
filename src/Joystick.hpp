@@ -12,7 +12,7 @@
 #include <mutex>
 #include <memory>
 #include "shared_ptrs.hpp"
-#include <bq/WeakPtrCache.hpp>
+#include <bq/utils/WeakPtrCache.hpp>
 #include <string_view>
 namespace bq {
   namespace sdl2 {

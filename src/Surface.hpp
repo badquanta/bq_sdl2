@@ -8,7 +8,7 @@
 #ifndef SURFACE_HPP_
 #define SURFACE_HPP_
 #include <SDL2/SDL.h>
-#include <bq/WeakPtrCache.hpp>
+#include <bq/utils/WeakPtrCache.hpp>
 #include "shared_ptrs.hpp"
 namespace bq {
   namespace sdl2 {

@@ -5,7 +5,7 @@
  *      Author: badquanta
  */
 
-#include "sdl2.h"
+#include "sdl2.hpp"
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest/doctest.h>
 namespace bq {

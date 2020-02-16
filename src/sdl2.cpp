@@ -5,7 +5,7 @@
  *      Author: badquanta
  */
 
-#include "sdl2.h"
+#include "sdl2.hpp"
 
 namespace bq {
   

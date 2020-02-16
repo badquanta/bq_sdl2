@@ -12,7 +12,7 @@
 #include <string_view>
 
 #include "shared_ptrs.hpp"
-#include <bq/WeakPtrCache.hpp>
+#include <bq/utils/WeakPtrCache.hpp>
 namespace bq {
   namespace sdl2 {
     /**
