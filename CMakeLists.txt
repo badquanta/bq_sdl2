@@ -1,5 +1,6 @@
 # PROJECT/CMakeList.txt
 # - started in bq_TEMPLATE
+# - renamed for bq_sdl
 cmake_minimum_required (VERSION 3.13) 
 # my projects start with bq_ to ensure I don't collide with others.
 # PROJECT_SHORTNAME refers to the part that follows `bq_...`.
@@ -19,30 +20,38 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/scripts/")
 include("externals")
 # bq_library defines the same settings I use for all of my `bq_...` C++/CMake libraries.
 include("bq_library")
-# find_packages...
+<<<<<<< HEAD
+# find_packages... (example: find_package(SDL2 REQUIRED) )
 ##################
+# TODO: Maybe move find_packages to external_packages?
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_ttf REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 #################
-# bq_sdl2 library
-# Define this library as a target
-add_library(bq_sdl2 SHARED ${BQ_SDL2_SOURCES})
-add_dependencies(bq_sdl2 bq_utils)
+# this template is setup for a library by default, I may generalize to programs later.
+# Define this library as a target.
+# TODO: Review if this should be STATIC or SHARED per-project; defaulting to STATIC for template.
+add_library(${PROJECT_NAME} SHARED)
+#################
+# add dependencies this library has.
+add_dependencies(${PROJECT_NAME} bq_utils)
 # Add needed libraries.
-target_link_libraries(bq_sdl2 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_TTF_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${BQ_UTIL_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_TTF_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${BQ_UTIL_LIBRARIES})
+#################
 # Describe install locations.
-install(TARGETS bq_sdl2
+install(TARGETS ${PROJECT_NAME}
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib
-	PUBLIC_HEADER	DESTINATION 	include/bq/sdl2
+	PUBLIC_HEADER	DESTINATION 	include/bq/${PROJECT_SHORTNAME}
 )
-INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/src/ DESTINATION include/bq/sdl2 FILES_MATCHING PATTERN "*.hpp")
-install(DIRECTORY docs DESTINATION docs/ CONFIGURATIONS Release FILES_MATCHING PATTERN "*.*")
+# Install the library public header files, which are all *.hpp files.
+INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/src/ DESTINATION include/bq/${SHORTNAME} FILES_MATCHING PATTERN "*.hpp")
+# Install the library documentation
+install(DIRECTORY ${CMAKE_BINARY_DIR}/docs/ DESTINATION docs/ FILES_MATCHING PATTERN "*.*")
 # Add needed include directories.
 # Use the correct include directories; dpending on the interface?
-target_include_directories(bq_sdl2 
+target_include_directories(${PROJECT_NAME} 
 	PUBLIC
 		$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src/>
 		$<INSTALL_INTERFACE:include/>
@@ -73,5 +82,9 @@ macro(TRINITY compName)
 	# Tell the user that we've configured this component.
 	message(STATUS "TRINITY DEFINED FOR: ${PROJECT_NAME}::${compName}")
 endmacro()
+<<<<<<< HEAD
 # Now add all that source code for this library...
+=======
+# Sub directories
+>>>>>>> f102bd5a60a1d0dbc5c7c666a871909578211080
 add_subdirectory(src)
