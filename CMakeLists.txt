@@ -15,12 +15,11 @@ project(bq_${PROJECT_SHORTNAME}
 # many of these bq_<PROJECT_NAME> share the same cmake setup,
 # most of that config is maintained in a "TEMPLATE" repo; and
 # periodically I update all the repos that use that template.
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/scripts/")
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/scripts")
 # Externals Projects this project will depend on.
 include("externals")
 # bq_library defines the same settings I use for all of my `bq_...` C++/CMake libraries.
 include("bq_library")
-<<<<<<< HEAD
 # find_packages... (example: find_package(SDL2 REQUIRED) )
 ##################
 # TODO: Maybe move find_packages to external_packages?
@@ -82,9 +81,6 @@ macro(TRINITY compName)
 	# Tell the user that we've configured this component.
 	message(STATUS "TRINITY DEFINED FOR: ${PROJECT_NAME}::${compName}")
 endmacro()
-<<<<<<< HEAD
-# Now add all that source code for this library...
-=======
+#=======
 # Sub directories
->>>>>>> f102bd5a60a1d0dbc5c7c666a871909578211080
 add_subdirectory(src)

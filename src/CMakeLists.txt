@@ -25,5 +25,5 @@ TRINITY(Timer)
 add_subdirectory(ttf)	#ttf/TTF
 TRINITY(Window)
 TRINITY(sdl2)
-TRINITY(XXXXXXXXXXXX)
+
 ##################
