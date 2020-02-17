@@ -1,16 +1,10 @@
-/*
- * Stream_test.cpp
- *
- *  Created on: Feb 7, 2020
- *      Author: badquanta
- */
 
-#include "audio/Stream.hpp"
+#include "Chunk.hpp"
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest/doctest.h>
 namespace bq {
   namespace sdl2 {
-    namespace audio {
+    namespace mix {
 
     } /* namespace audio */
   } /* namespace sdl2 */
