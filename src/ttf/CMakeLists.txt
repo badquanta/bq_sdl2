@@ -1,1 +1,1 @@
-component(TTF)
+TRINITY(TTF)

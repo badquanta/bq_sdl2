@@ -1,3 +1,3 @@
-component(Cvt)
-component(Spec)
-component(Stream)
+TRINITY(Cvt)
+TRINITY(Spec)
+TRINITY(Stream)

@@ -1,2 +1,2 @@
-component(Chunk)
-component(Music)
+TRINITY(Chunk)
+TRINITY(Music)
