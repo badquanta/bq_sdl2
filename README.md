@@ -5,3 +5,4 @@
 
 This library utilizes std::shared_ptr heavily to offer quasi-garbage collection of SDL2 related resources.
 
+## [doxygen documentation here](https://codedocs.xyz/badquanta/bq_sdl2)
