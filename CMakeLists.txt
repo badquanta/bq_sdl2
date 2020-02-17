@@ -8,7 +8,6 @@ project(bq_sdl2
 )
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/scripts")
 # Externals & Settings 
-include("scripts/build_types.cmake")
 include("scripts/external_projects.cmake")
 include("scripts/project_settings.cmake")
 # Sub directories
