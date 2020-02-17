@@ -1,16 +1,24 @@
 # PROJECT/CMakeList.txt
-# - started in bq_TEMPLATE++
+# - started in bq_TEMPLATE
 cmake_minimum_required (VERSION 3.13) 
-project(bq_sdl2
+# my projects start with bq_ to ensure I don't collide with others.
+# PROJECT_SHORTNAME refers to the part that follows `bq_...`.
+set(PROJECT_SHORTNAME sdl2)
+##########
+project(bq_${PROJECT_SHORTNAME}
 	VERSION "0.0.1"
 	DESCRIPTION "A simple Object-Oriented SDL2 wrapper."
 	HOMEPAGE_URL "https://github.com/BadQuanta/bq_sdl"
 	LANGUAGES CXX
 )
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/scripts")
-# Externals & Settings 
-include("external_projects.cmake")
-include("project_settings.cmake")
+# many of these bq_<PROJECT_NAME> share the same cmake setup,
+# most of that config is maintained in a "TEMPLATE" repo; and
+# periodically I update all the repos that use that template.
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/scripts/")
+# Externals Projects this project will depend on.
+include("externals")
+# bq_library defines the same settings I use for all of my `bq_...` C++/CMake libraries.
+include("bq_library")
 # find_packages...
 ##################
 find_package(SDL2 REQUIRED)
@@ -31,6 +39,7 @@ install(TARGETS bq_sdl2
 	PUBLIC_HEADER	DESTINATION 	include/bq/sdl2
 )
 INSTALL(DIRECTORY ${CMAKE_SOURCE_DIR}/src/ DESTINATION include/bq/sdl2 FILES_MATCHING PATTERN "*.hpp")
+install(DIRECTORY docs DESTINATION docs/ CONFIGURATIONS Release FILES_MATCHING PATTERN "*.*")
 # Add needed include directories.
 # Use the correct include directories; dpending on the interface?
 target_include_directories(bq_sdl2 
@@ -44,25 +53,25 @@ target_include_directories(bq_sdl2
 # (aka: "Source, Header, and Test")
 macro(TRINITY compName)
 	# Handle each source by adding it to the target
-	target_sources(bq_sdl2 PRIVATE "${compName}.cpp")
+	target_sources(${PROJECT_NAME} PRIVATE "${compName}.cpp")
 	# Handle each header by adding it to the target AND
-	target_sources(bq_sdl2 PUBLIC "${compName}.hpp")
+	target_sources(${PROJECT_NAME} PUBLIC "${compName}.hpp")
 	# Adding it to the target_properties (TODO: This may not be needed anymore)
-	set_target_properties(bq_sdl2 PROPERTIES PUBLIC_HEADER "${compName}.hpp")
+	set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${compName}.hpp")
 	# Add a target for each component's unit test.
 	add_executable("${compName}_test" "${compName}_test.cpp" )
 	# unit tests require this header-only package to compile, add it as a dependency.
 	add_dependencies("${compName}_test" doctest)	
 	# link each component's unit test agains the library as a whole.
-	target_link_libraries("${compName}_test" bq_sdl2)
+	target_link_libraries("${compName}_test" ${PROJECT_NAME})
 	#target_link_libraries("${X}_test" PUBLIC bqpd)	
 	#target_link_libraries("${X}_test" PRIVATE doctest::doctest)
 	# Setup the include directories for the tests	
 	target_include_directories("${compName}_test" PUBLIC "${DOCTEST_INCLUDE_DIR}" "${CMAKE_BINARY_DIR}/include")	
 	# Register each test with the test-running framework.
 	add_test("${compName}_test" "${compName}_test")
-	# Tell the user that we've configured ("Shat") this component.
-	message(STATUS "SHaT ${compName}")
+	# Tell the user that we've configured this component.
+	message(STATUS "TRINITY DEFINED FOR: ${PROJECT_NAME}::${compName}")
 endmacro()
 # Now add all that source code for this library...
 add_subdirectory(src)
