@@ -15,7 +15,7 @@ project(bq_${PROJECT_SHORTNAME}
 # many of these bq_<PROJECT_NAME> share the same cmake setup,
 # most of that config is maintained in a "TEMPLATE" repo; and
 # periodically I update all the repos that use that template.
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/scripts/")
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/scripts/)
 # Externals Projects this project will depend on.
 include("externals")
 # bq_library defines the same settings I use for all of my `bq_...` C++/CMake libraries.
